@@ -2,7 +2,7 @@ name: Build and Deploy Application to Production
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
