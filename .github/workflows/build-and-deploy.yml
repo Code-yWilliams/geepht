@@ -1,6 +1,9 @@
 name: Build and Deploy Application to Production
 
 on:
+  pull_request:
+    types: [closed]
+    branches: [main]
   push:
     branches: [main]
   workflow_dispatch:
