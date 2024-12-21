@@ -1,7 +1,5 @@
 name: Build and Deploy Application to Production
 
-name: CI
-
 on:
   pull_request:
   push:
