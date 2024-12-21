@@ -13,8 +13,7 @@ jobs:
       image_tags: latest
       dockerfile: ./Dockerfile
       docker_context: .
-      secrets: inherit
-#
+    secrets: inherit
 # deploy-production-app:
 #   needs: build-and-publish-image-to-dockerhub
 #   uses: ./.github/workflows/deploy-kubernetes-resources.yml
