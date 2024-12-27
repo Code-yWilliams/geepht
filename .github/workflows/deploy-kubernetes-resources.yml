@@ -1,0 +1,36 @@
+name: Deploy to Kubernetes
+on:
+  workflow_call:
+    secrets:
+      BASE_64_KUBE_CONFIG:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install gettext
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext
+
+      - name: Process kustomization template
+        env:
+          SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          envsubst < ./k8s/app/kustomization_template.yaml > ./k8s/app/kustomization.yaml
+
+      - name: Set up kubectl
+        uses: tale/kubectl-action@v1
+        with:
+          base64-kube-config: ${{ secrets.BASE_64_KUBE_CONFIG }}
+
+      - name: Apply Kustomize changes
+        run: kubectl apply -k ./k8s/app
+
+      - name: Restart deployment
+        run: kubectl rollout restart deployment geepht-deployment
