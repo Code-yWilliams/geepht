@@ -15,6 +15,6 @@ jobs:
       docker_context: .
     secrets: inherit
   deploy-production-app:
-    needs: build-and-publish-image-to-dockerhub
+    needs: build-and-push-container-image-to-dockerhub
     uses: ./.github/workflows/deploy-kubernetes-resources.yml
     secrets: inherit
