@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: github-actions-cluster-role
+  namespace: geepht
+rules: # TODO: update rules to provide minimum required permissions to execute functions in gh actions
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]
