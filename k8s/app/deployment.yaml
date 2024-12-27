@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geepht-deployment
+  namespace: geepht
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: geepht
+  template:
+    metadata:
+      labels:
+        app: geepht
+    spec:
+      containers:
+        - name: geepht
+          image: codeywilliams/geepht:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: RAILS_ENV
+              value: production
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: geepht-secrets
+                  key: secret-key-base
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: geepht-secrets
+                  key: database-url
+# could use envfrom yaml block that allows you to pass env vars from configmaps
+# interpolate gh actions secrets into configmap, then use that configmap in the deployment
