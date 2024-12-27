@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: geepht-ingress
+  namespace: geepht
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/issuer: letsencrypt-nginx
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true" # Redirects www. to non-www.
+    nginx.ingress.kubernetes.io/service-namespace: default
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - geepht.net
+        - www.geepht.net
+      secretName: geepht-letsencrypt-nginx
+  rules:
+    - host: geepht.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: geepht-service
+                port:
+                  number: 80
