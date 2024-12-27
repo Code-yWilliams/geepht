@@ -60,3 +60,4 @@ jobs:
           tags: ${{ env.DOCKER_TAGS }}
           file: ${{ github.workspace }}/${{ inputs.dockerfile }}
           context: ${{ github.workspace }}/${{ inputs.docker_context }}
+          platform: linux/amb64,linux/arm64
