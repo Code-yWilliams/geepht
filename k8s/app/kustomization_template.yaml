@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+generatorOptions:
+  disableNameSuffixHash: true # prevent hash suffix so we can reference secrets by name
+
+secretGenerator:
+  - name: geepht-secrets
+    literals:
+      - secret-key-base=$SECRET_KEY_BASE
+      - database-url=$DATABASE_URL
+  - name: github-actions-token
+    type: kubernetes.io/service-account-token
+    options:
+      annotations:
+        kubernetes.io/service-account.name: github-actions-service-account
+
+resources:
+  - cert_issuer.yaml
+  - nginx_ingress.yaml
+  - deployment.yaml
+  - service.yaml
+  - gh_actions_service_account.yaml
+  - gh_actions_cluster_role.yaml
+  - gh_actions_cluster_role_binding.yaml
