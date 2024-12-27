@@ -12,6 +12,8 @@
 
 *.secrets
 
+/k8s/configs/*
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
