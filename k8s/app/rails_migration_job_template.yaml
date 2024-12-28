@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migrate-${GITHUB_SHA}
+spec:
+  ttlSecondsAfterFinished: 300
+  template:
+    spec:
+      containers:
+        - name: migration
+          image: codeywilliams/geepht:latest
+          command: ["./bin/rails", "db:migrate"]
+          env:
+            - name: RAILS_ENV
+              value: production
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: geepht-secrets
+                  key: secret-key-base
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: geepht-secrets
+                  key: database-url
+      restartPolicy: Never
