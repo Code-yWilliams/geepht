@@ -40,7 +40,6 @@ RUN apt-get update -qq && \
 
 # Copy over yarn 2+ executable and ensure it is used
 COPY package.json yarn.lock .yarn .yarnrc.yml ./
-RUN yarn set version berry
 RUN yarn install
 
 # Install application gems
