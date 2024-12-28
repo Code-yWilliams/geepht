@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bin/dev"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vite-plugin-ruby": "^5.1.1"
+  },
+  "name": "geepht",
+  "version": "1.0.0",
+  "description": "a gift (geepht) list app",
+  "main": "app/javascript/entrypoints/app.ts",
+  "repository": "https://github.com/Code-yWilliams/geepht.git",
+  "author": "Cody Williams <cody@codywilliams.dev>",
+  "license": "MIT",
+  "packageManager": "yarn@4.5.3",
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
