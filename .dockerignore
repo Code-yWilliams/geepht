@@ -48,3 +48,9 @@
 
 # Ignore Kubernetes-related files
 /k8s/*
+
+# Ignore overmind log files
+*.log
+
+# Ignore Yarn install state file
+install-state.gz
