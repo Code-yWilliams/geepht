@@ -36,10 +36,12 @@ RUN apt-get update -qq && \
 # Install Node.js and Yarn
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y nodejs npm && \
-    npm install --global yarn
+    npm install --global yarn 
 
-# Copy over yarn 2+ executable and ensure it is used
-COPY package.json yarn.lock .yarn .yarnrc.yml ./
+
+# Copy over yarn files and 2+ executable and ensure it is used
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY .yarn .yarn
 RUN yarn install
 
 # Install application gems
