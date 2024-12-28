@@ -15,7 +15,7 @@ jobs:
           base64-kube-config: ${{ secrets.BASE_64_KUBE_CONFIG }}
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install gettext
         run: |
