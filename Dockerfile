@@ -33,16 +33,21 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+# Install Node.js and Yarn
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y nodejs npm && \
+    npm install --global yarn
+
+# Copy over yarn 2+ executable and ensure it is used
+COPY package.json yarn.lock .yarn .yarnrc.yml ./
+RUN yarn set version berry
+RUN yarn install
+
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
-
-# Copy over yarn and ensure it uses local yarn executable
-COPY package.json yarn.lock .yarn .yarnrc.yml ./
-RUN yarn set version berry
-RUN yarn install
 
 # Copy application code
 COPY . .
