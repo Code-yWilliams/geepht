@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     sign_out: "logout",
     sign_up: "register",
     password: "forgot-password"
-  }, controllers: {}
+
+  root to: redirect("/app")
 
   get "app", to: "app#index"
   get "app/*route", to: "app#index"
@@ -19,6 +20,4 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  root "app#index"
 end
