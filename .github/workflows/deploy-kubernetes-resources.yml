@@ -26,6 +26,8 @@ jobs:
         if: success()
         env:
           GITHUB_SHA: ${{ github.sha }}
+          SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
           envsubst < k8s/app/rails_migration_job_template.yaml | kubectl apply -f -
           kubectl wait --for=condition=complete --timeout=180s job/migrate-${GITHUB_SHA}
