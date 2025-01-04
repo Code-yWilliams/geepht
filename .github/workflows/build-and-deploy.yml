@@ -10,7 +10,7 @@ jobs:
     uses: ./.github/workflows/build-and-push-container-image-to-dockerhub.yml
     with:
       docker_image: codeywilliams/geepht
-      image_tags: latest
+      image_tags: latest,${GITHUB_SHA}
       dockerfile: ./Dockerfile
       docker_context: .
     secrets: inherit

@@ -30,17 +30,15 @@ jobs:
           envsubst < k8s/app/rails_migration_job_template.yaml | kubectl apply -f -
           kubectl wait --for=condition=complete --timeout=180s job/migrate-${GITHUB_SHA}
 
-      - name: Process kustomization template
+      - name: Process manifest templates
         env:
+          GITHUB_SHA: ${{ github.sha }}
           SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
+          envsubst < ./k8s/app/deployment_template.yaml > ./k8s/app/deployment.yaml
           envsubst < ./k8s/app/kustomization_template.yaml > ./k8s/app/kustomization.yaml
 
       - name: Apply Kustomize file
         if: success()
         run: kubectl apply -k ./k8s/app
-
-      - name: Restart deployment
-        if: success()
-        run: kubectl rollout restart deployment geepht-deployment
