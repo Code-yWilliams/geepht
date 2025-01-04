@@ -1,4 +1,5 @@
 <%= react_component(
   "App",
-  user: UserBlueprint.render(current_user)
+  currentUser: UserBlueprint.render_as_hash(current_user),
+  config: @config
 ) %>
