@@ -30,7 +30,7 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
           envsubst < k8s/app/rails_migration_job_template.yaml | kubectl apply -f -
-          kubectl wait --for=condition=complete --timeout=180s job/migrate-${GITHUB_SHA}
+          kubectl wait --for=condition=complete --timeout=120s job/migrate-${GITHUB_SHA}
 
       - name: Process manifest templates
         env:
