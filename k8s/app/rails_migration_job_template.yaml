@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: migration
-          image: codeywilliams/geepht:latest
+          image: codeywilliams/geepht:$GITHUB_SHA
           command: ["./bin/rails", "db:migrate"]
           env:
             - name: RAILS_ENV
