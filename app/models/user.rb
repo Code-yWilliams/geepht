@@ -1,6 +1,23 @@
 class User < ApplicationRecord
-  validates :email, uniqueness: true
-  validates :username, uniqueness: true
+  validates :email, presence: true, uniqueness: { case_insensitive: false }
+  validates :username, presence: true, uniqueness: { case_insensitive: false }, length: { minimum: 2 }
+
+
+  # DEVISE-SPECIFIC CODE BELOW
+  attr_writer :login
+
+  def login
+    @login || username || email
+  end
+
+  def self.find_for_database_authentication(tainted_conditions)
+    conditions = tainted_conditions.dup
+    login = conditions.delete(:login)
+
+    where(conditions).where([
+      "lower(username) = :value OR lower(email) = :value", { value: login.strip.downcase }
+    ]).first
+  end
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
