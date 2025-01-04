@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     sign_out: "logout",
     sign_up: "register",
     password: "forgot-password"
+  }, controllers: {
+    registrations: "users/registrations"
+  }
 
   root to: redirect("/app")
 
