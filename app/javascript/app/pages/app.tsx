@@ -1,7 +1,7 @@
 import React from "react";
 
 const App = () => {
-  return <>BAGELs</>;
+  return <>Bean Burrito</>;
 };
 
 export default App;
