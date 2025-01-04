@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  validates :email, uniqueness: true
+  validates :username, uniqueness: true
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -15,6 +18,7 @@ end
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  username               :string           not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -22,4 +26,5 @@ end
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_username              (username) UNIQUE
 #
