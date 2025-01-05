@@ -1,7 +1,7 @@
 import "@mantine/core/styles.css";
 
-import { CurrentUser } from "app/javascript/App/typings/CurrentUser";
-import { AppConfig } from "@typings/AppConfig";
+import { CurrentUser } from "app/javascript/app/typings/CurrentUser";
+import { AppConfig } from "app/javascript/app/typings/AppConfig";
 
 import { MantineProvider } from "@mantine/core";
 

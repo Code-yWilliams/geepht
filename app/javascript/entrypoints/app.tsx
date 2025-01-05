@@ -1,4 +1,4 @@
-import App from "../App/index";
+import App from "../app";
 
 import componentLoader from "../utils/componentLoader";
 
