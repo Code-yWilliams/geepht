@@ -1,5 +1,9 @@
-import { CurrentUser } from "@typings/CurrentUser";
+import "@mantine/core/styles.css";
+
+import { CurrentUser } from "app/javascript/App/typings/CurrentUser";
 import { AppConfig } from "@typings/AppConfig";
+
+import { MantineProvider } from "@mantine/core";
 
 interface AppProps {
   currentUser: CurrentUser;
@@ -8,7 +12,7 @@ interface AppProps {
 
 const App = ({ currentUser, config }: AppProps) => {
   console.log({ currentUser, config });
-  return <>Bean Burrito</>;
+  return <MantineProvider>Bean Burrito</MantineProvider>;
 };
 
 export default App;

@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  validates :email, presence: true, uniqueness: { case_insensitive: false }
   validates :username, presence: true, uniqueness: { case_insensitive: false }, length: { minimum: 2 }
 
 

@@ -18,7 +18,9 @@
     "jsx": "react-jsx",
     "strictPropertyInitialization": false,
     "paths": {
-      "@typings/*": ["app/javascript/app/types/*"]
+      "@typings/*": ["app/javascript/App/typings/*"],
+      "@pages/*": ["app/javascript/App/pages/*"],
+      "@images/*": ["app/assets/images/*"]
     }
   },
   "include": ["."],
