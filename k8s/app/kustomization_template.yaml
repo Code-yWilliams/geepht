@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 generatorOptions:
-  disableNameSuffixHash: true # prevent hash suffix so we can reference secrets by name
+  disableNameSuffixHash: true
 
 secretGenerator:
   - name: geepht-secrets
