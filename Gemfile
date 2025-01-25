@@ -62,3 +62,5 @@ gem "devise", "~> 4.9"
 gem "vite_rails", "~> 3.0"
 
 gem "blueprinter", "~> 1.1"
+
+gem "newrelic_rpm"
