@@ -16,6 +16,7 @@ secretGenerator:
         kubernetes.io/service-account.name: github-actions-service-account
 
 resources:
+  - geepht_namespace.yaml
   - cert_issuer.yaml
   - nginx_ingress.yaml
   - deployment.yaml
