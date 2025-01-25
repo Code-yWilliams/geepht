@@ -18,6 +18,9 @@ spec:
           image: codeywilliams/geepht:$GITHUB_SHA
           ports:
             - containerPort: 3000
+          resources:
+            requests:
+              cpu: 50m
           env:
             - name: RAILS_ENV
               value: production
