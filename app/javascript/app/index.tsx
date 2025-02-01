@@ -1,9 +1,21 @@
+import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 
 import { CurrentUser } from "app/javascript/app/typings/CurrentUser";
-import { AppConfig } from "app/javascript/app/typings/AppConfig";
+import { AppConfig } from "./typings/AppConfig";
 
-import { MantineProvider } from "@mantine/core";
+
+import { routeTree } from './routeTree.gen'
+
+const router = createRouter({ routeTree, basepath: "/app" })
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
+
 
 interface AppProps {
   currentUser: CurrentUser;
@@ -11,8 +23,14 @@ interface AppProps {
 }
 
 const App = ({ currentUser, config }: AppProps) => {
-  console.log({ currentUser, config });
-  return <MantineProvider>Bean Burrito</MantineProvider>;
+  // TODO: create a context to access currentUser and config
+  return (
+    <MantineProvider>
+      <RouterProvider router={router} />
+    </MantineProvider>
+  )
 };
 
 export default App;
+
+
