@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   root to: redirect("/app")
 
   get "app", to: "app#index"
-  get "app/*route", to: "app#index"
+  get "app/*route", to: "app#index" # TODO: prob remove and replace with 404 via tanstack router
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
