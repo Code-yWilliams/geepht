@@ -20,7 +20,7 @@
     "paths": {
       "@typings/*": ["app/javascript/app/typings/*"],
       "@pages/*": ["app/javascript/app/pages/*"],
-      "@images/*": ["app/assets/images/*"]
+      "@atoms/*": ["app/javascript/app/atoms/*"],
     }
   },
   "include": ["."],

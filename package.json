@@ -30,6 +30,7 @@
     "@mantine/hooks": "^7.15.2",
     "@tanstack/react-router": "^1.98.4",
     "@vitejs/plugin-react": "^4.3.4",
+    "jotai": "^2.11.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }
