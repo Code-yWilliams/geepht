@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     # Can be used by load balancers and uptime monitors to verify that the app is live.
     get "up" => "rails/health#show", as: :rails_health_check
     get "/" => redirect("/login")
+    get "*path", to: redirect("/login"), constraints: ->(request) {
+      ![ "login", "register", "forgot-password", "app" ].include?(request.path.split("/")[1])
+    }
   end
 
   devise_for :users, path: "", path_names: {
