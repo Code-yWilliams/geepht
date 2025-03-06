@@ -9,5 +9,6 @@ export default defineConfig({
     RubyPlugin(),
     tsConfigPaths(),
     TanStackRouterVite({ autoCodeSplitting: true }),
+    viteReact()
   ],
 });
