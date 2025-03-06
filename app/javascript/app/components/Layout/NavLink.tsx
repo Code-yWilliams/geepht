@@ -15,7 +15,6 @@ const NavLink = ({ icon, label, to, ...rest }: NavLinkProps) => {
       style={{ 
         textDecoration: 'none', 
         color: 'inherit',
-        display: 'block'
       }}
     >
       <MantineNavLink
