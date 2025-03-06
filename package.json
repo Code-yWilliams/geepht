@@ -29,6 +29,7 @@
   "dependencies": {
     "@mantine/core": "^7.15.2",
     "@mantine/hooks": "^7.15.2",
+    "@tabler/icons-react": "^3.31.0",
     "@tanstack/react-router": "^1.98.4",
     "@vitejs/plugin-react": "^4.3.4",
     "jotai": "^2.11.3",
