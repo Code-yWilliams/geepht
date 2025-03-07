@@ -6,9 +6,10 @@ interface NavLinkProps extends LinkProps {
   icon: ReactNode
   label?: string | false
   style?: CSSProperties
+  activeOverride?: boolean
 }
 
-const NavLink = ({ icon, label, to, style, ...rest }: NavLinkProps) => {
+const NavLink = ({ icon, label, to, style, activeOverride, ...rest }: NavLinkProps) => {
   const currentPath = useRouterState({
     select: (state) => state.location.pathname,
   })
@@ -30,7 +31,7 @@ const NavLink = ({ icon, label, to, style, ...rest }: NavLinkProps) => {
         label={label}
         style={{ whiteSpace: 'nowrap'}}
         component="span"
-        active={active}
+        active={activeOverride ? activeOverride : active}
       />
     </Link>
   )
