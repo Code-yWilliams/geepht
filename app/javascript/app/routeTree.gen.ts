@@ -13,11 +13,11 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as SettingsImport } from './routes/settings'
 import { Route as SearchImport } from './routes/search'
-import { Route as ProfileImport } from './routes/profile'
 import { Route as FriendsImport } from './routes/friends'
 import { Route as ExploreImport } from './routes/explore'
 import { Route as ClaimedImport } from './routes/claimed'
 import { Route as AboutImport } from './routes/about'
+import { Route as UsernameImport } from './routes/$username'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -31,12 +31,6 @@ const SettingsRoute = SettingsImport.update({
 const SearchRoute = SearchImport.update({
   id: '/search',
   path: '/search',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ProfileRoute = ProfileImport.update({
-  id: '/profile',
-  path: '/profile',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -64,6 +58,12 @@ const AboutRoute = AboutImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const UsernameRoute = UsernameImport.update({
+  id: '/$username',
+  path: '/$username',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
@@ -79,6 +79,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/$username': {
+      id: '/$username'
+      path: '/$username'
+      fullPath: '/$username'
+      preLoaderRoute: typeof UsernameImport
       parentRoute: typeof rootRoute
     }
     '/about': {
@@ -109,13 +116,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FriendsImport
       parentRoute: typeof rootRoute
     }
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileImport
-      parentRoute: typeof rootRoute
-    }
     '/search': {
       id: '/search'
       path: '/search'
@@ -137,22 +137,22 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$username': typeof UsernameRoute
   '/about': typeof AboutRoute
   '/claimed': typeof ClaimedRoute
   '/explore': typeof ExploreRoute
   '/friends': typeof FriendsRoute
-  '/profile': typeof ProfileRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$username': typeof UsernameRoute
   '/about': typeof AboutRoute
   '/claimed': typeof ClaimedRoute
   '/explore': typeof ExploreRoute
   '/friends': typeof FriendsRoute
-  '/profile': typeof ProfileRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
 }
@@ -160,11 +160,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/$username': typeof UsernameRoute
   '/about': typeof AboutRoute
   '/claimed': typeof ClaimedRoute
   '/explore': typeof ExploreRoute
   '/friends': typeof FriendsRoute
-  '/profile': typeof ProfileRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
 }
@@ -173,31 +173,31 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$username'
     | '/about'
     | '/claimed'
     | '/explore'
     | '/friends'
-    | '/profile'
     | '/search'
     | '/settings'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$username'
     | '/about'
     | '/claimed'
     | '/explore'
     | '/friends'
-    | '/profile'
     | '/search'
     | '/settings'
   id:
     | '__root__'
     | '/'
+    | '/$username'
     | '/about'
     | '/claimed'
     | '/explore'
     | '/friends'
-    | '/profile'
     | '/search'
     | '/settings'
   fileRoutesById: FileRoutesById
@@ -205,22 +205,22 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  UsernameRoute: typeof UsernameRoute
   AboutRoute: typeof AboutRoute
   ClaimedRoute: typeof ClaimedRoute
   ExploreRoute: typeof ExploreRoute
   FriendsRoute: typeof FriendsRoute
-  ProfileRoute: typeof ProfileRoute
   SearchRoute: typeof SearchRoute
   SettingsRoute: typeof SettingsRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  UsernameRoute: UsernameRoute,
   AboutRoute: AboutRoute,
   ClaimedRoute: ClaimedRoute,
   ExploreRoute: ExploreRoute,
   FriendsRoute: FriendsRoute,
-  ProfileRoute: ProfileRoute,
   SearchRoute: SearchRoute,
   SettingsRoute: SettingsRoute,
 }
@@ -236,17 +236,20 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/$username",
         "/about",
         "/claimed",
         "/explore",
         "/friends",
-        "/profile",
         "/search",
         "/settings"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/$username": {
+      "filePath": "$username.tsx"
     },
     "/about": {
       "filePath": "about.tsx"
@@ -259,9 +262,6 @@ export const routeTree = rootRoute
     },
     "/friends": {
       "filePath": "friends.tsx"
-    },
-    "/profile": {
-      "filePath": "profile.tsx"
     },
     "/search": {
       "filePath": "search.tsx"
