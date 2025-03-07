@@ -1,13 +1,20 @@
 import { NavLink as MantineNavLink } from "@mantine/core"
-import { Link, LinkProps } from "@tanstack/react-router"
-import { ReactNode } from "react"
+import { Link, LinkProps, useRouterState } from "@tanstack/react-router"
+import { CSSProperties, ReactNode } from "react"
 
 interface NavLinkProps extends LinkProps {
   icon: ReactNode
   label?: string | false
+  style?: CSSProperties
 }
 
-const NavLink = ({ icon, label, to, ...rest }: NavLinkProps) => {
+const NavLink = ({ icon, label, to, style, ...rest }: NavLinkProps) => {
+  const currentPath = useRouterState({
+    select: (state) => state.location.pathname,
+  })
+
+  const active = to && currentPath.includes(to)
+  
   return (
     <Link 
       to={to} 
@@ -15,6 +22,7 @@ const NavLink = ({ icon, label, to, ...rest }: NavLinkProps) => {
       style={{ 
         textDecoration: 'none', 
         color: 'inherit',
+        ...style
       }}
     >
       <MantineNavLink
@@ -22,6 +30,7 @@ const NavLink = ({ icon, label, to, ...rest }: NavLinkProps) => {
         label={label}
         style={{ whiteSpace: 'nowrap'}}
         component="span"
+        active={active}
       />
     </Link>
   )
