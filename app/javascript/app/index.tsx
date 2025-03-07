@@ -1,16 +1,16 @@
 import { RouterProvider, createRouter } from '@tanstack/react-router'
-import { MantineProvider } from "@mantine/core";
-import { useAtom } from 'jotai';
-import { useEffect } from 'react';
-import "@mantine/core/styles.css";
+import { MantineProvider } from '@mantine/core'
+import { useAtom } from 'jotai'
+import { useEffect } from 'react'
+import '@mantine/core/styles.css'
 
 import currentUserAtom from '@atoms/currentUserAtom'
-import configAtom from '@atoms/configAtom';
-import { CurrentUser } from "app/javascript/app/typings/CurrentUser";
-import { AppConfig } from "./typings/AppConfig";
+import configAtom from '@atoms/configAtom'
+import { CurrentUser } from 'app/javascript/app/typings/CurrentUser'
+import { AppConfig } from './typings/AppConfig'
 import { routeTree } from './routeTree.gen'
 
-const router = createRouter({ routeTree, basepath: "/app" })
+const router = createRouter({ routeTree, basepath: '/app' })
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -19,8 +19,8 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppProps {
-  currentUser: CurrentUser;
-  config: AppConfig;
+  currentUser: CurrentUser
+  config: AppConfig
 }
 
 const App = ({ currentUser, config }: AppProps) => {
@@ -35,8 +35,6 @@ const App = ({ currentUser, config }: AppProps) => {
       <RouterProvider router={router} />
     </MantineProvider>
   )
-};
+}
 
-export default App;
-
-
+export default App

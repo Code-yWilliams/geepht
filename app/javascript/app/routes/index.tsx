@@ -4,9 +4,7 @@ import useCurrentUser from '@hooks/currentUser'
 const Index = () => {
   const { username } = useCurrentUser()
 
-  return (
-    <Navigate to={username}/>
-  )
+  return <Navigate to={username} />
 }
 
 export const Route = createFileRoute('/')({

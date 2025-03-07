@@ -1,3 +1,3 @@
-import { useMediaQuery } from "@mantine/hooks";
+import { useMediaQuery } from '@mantine/hooks'
 
-export const useIsMobile = () => useMediaQuery(`(max-width: 48em)`);
+export const useIsMobile = () => useMediaQuery(`(max-width: 48em)`)

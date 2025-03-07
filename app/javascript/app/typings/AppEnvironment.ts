@@ -1,1 +1,1 @@
-export type AppEnvironment = "development" | "production";
+export type AppEnvironment = 'development' | 'production'
