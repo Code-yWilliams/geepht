@@ -22,7 +22,8 @@
       "@pages/*": ["app/javascript/app/pages/*"],
       "@images/*": ["app/assets/images/*"],
       "@atoms/*": ["app/javascript/app/atoms/*"],
-      "@components/*": ["app/javascript/app/components/*"]
+      "@components/*": ["app/javascript/app/components/*"],
+      "@hooks/*": ["app/javascript/app/hooks/*"]
     }
   },
   "include": ["."],
