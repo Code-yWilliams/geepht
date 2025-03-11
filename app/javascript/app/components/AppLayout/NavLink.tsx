@@ -36,14 +36,18 @@ const NavLink = ({
         color: 'inherit',
         display: 'flex',
         flex: isMobile ? 1 : 0,
-        textAlign: 'center',
         ...style,
       }}
     >
       <MantineNavLink
         leftSection={isMobile ? undefined : icon}
         label={isMobile ? icon : label}
-        style={{ whiteSpace: 'nowrap', lineHeight: 1, textAlign: 'center' }}
+        style={{
+          whiteSpace: 'nowrap',
+          lineHeight: 1,
+          textAlign: isMobile ? 'center' : 'left',
+          height: 70,
+        }}
         component='span'
         active={activeOverride ? activeOverride : active}
       />

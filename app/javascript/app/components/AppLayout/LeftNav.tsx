@@ -17,7 +17,7 @@ interface NavBarProps {
   hideLabels?: boolean
 }
 
-const NavBar = ({ ref, hideLabels }: NavBarProps) => {
+const NavBar = ({ ref }: NavBarProps) => {
   const { username } = useCurrentUser()
 
   const currentPath = useRouterState({
@@ -31,37 +31,41 @@ const NavBar = ({ ref, hideLabels }: NavBarProps) => {
         ref={ref}
         style={{ transition: 'width 0.2s ease' }}
       >
-        <Stack justify='center' gap='xs' style={{ height: '100%' }}>
+        <Stack
+          justify='center'
+          gap={0}
+          style={{ height: '100%', maxWidth: 200, textAlign: 'start' }}
+        >
           <NavLink
-            label={!hideLabels && 'My Lists'}
+            label={'My Lists'}
             to='/$username'
             params={{ username }}
             icon={<IconUserCircle size={35} />}
             activeOverride={currentPath.includes(username)}
           />
           <NavLink
-            label={!hideLabels && 'Friends'}
+            label={'Friends'}
             to='/friends'
             icon={<IconUsers size={35} />}
           />
           <NavLink
-            label={!hideLabels && 'Claimed Items'}
+            label={'Claimed Items'}
             to='/claimed'
             icon={<IconCircleCheck size={35} />}
           />
           <NavLink
-            label={!hideLabels && 'Explore'}
+            label={'Explore'}
             to='/explore'
             icon={<IconBrandSafari size={35} />}
           />
           <NavLink
-            label={!hideLabels && 'Search'}
+            label={'Search'}
             to='/search'
             icon={<IconSearch size={35} />}
           />
         </Stack>
         <NavLink
-          label={!hideLabels && 'Settings'}
+          label={'Settings'}
           to='/settings'
           icon={<IconSettings size={35} />}
           style={{ marginBottom: 30 }}

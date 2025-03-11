@@ -20,7 +20,7 @@ const Layout = () => {
       }}
       padding='md'
     >
-      <LeftNav ref={navBarRef} hideLabels={!navHovered} />
+      <LeftNav ref={navBarRef} />
       <AppShell.Main>
         <Outlet />
         <TanStackRouterDevTools />
