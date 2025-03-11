@@ -12,7 +12,7 @@ const TanStackRouterDevTools = () => {
   const [config] = useAtom(configAtom)
   if (config?.environment === 'production') return null
 
-  return <DevTools position='bottom-right' />
+  return <DevTools position='top-right' />
 }
 
 export default TanStackRouterDevTools

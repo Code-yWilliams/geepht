@@ -2,7 +2,8 @@ import { AppShell } from '@mantine/core'
 import { useHover } from '@mantine/hooks'
 import { Outlet } from '@tanstack/react-router'
 import TanStackRouterDevTools from '@components/TanStackRouterDevTools'
-import NavBar from './NavBar'
+import LeftNav from './LeftNav'
+import BottomNav from './BottomNav'
 
 const Layout = () => {
   const { hovered: navHovered, ref: navBarRef } = useHover()
@@ -14,13 +15,17 @@ const Layout = () => {
         breakpoint: 'sm',
         collapsed: { mobile: true },
       }}
+      footer={{
+        height: { mobile: 50, desktop: 0 },
+      }}
       padding='md'
     >
-      <NavBar ref={navBarRef} hideLabels={!navHovered} />
+      <LeftNav ref={navBarRef} hideLabels={!navHovered} />
       <AppShell.Main>
         <Outlet />
         <TanStackRouterDevTools />
       </AppShell.Main>
+      <BottomNav />
     </AppShell>
   )
 }
